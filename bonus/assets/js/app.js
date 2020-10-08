@@ -70,6 +70,8 @@ function renderCircles(circlesGroup, xLinearScale, yLinearScale, chosenXAxis, ch
         .data(data)
         .enter()
         .append("circle")
+        // .transition()
+        // .duration(750)
         .attr("cx", d => xLinearScale(d[chosenXAxis]))
         .attr("cy", d => yLinearScale(d[chosenYAxis]))
         .attr("r", "15")
@@ -81,6 +83,8 @@ function renderCircles(circlesGroup, xLinearScale, yLinearScale, chosenXAxis, ch
         .data(data)
         .enter()
         .append("text")
+        // .transition()
+        // .duration(750)
         .attr("x", d => xLinearScale(d[chosenXAxis])-8)
         .attr("y", d => yLinearScale(d[chosenYAxis])+5)
         .text(d => d.abbr)
@@ -190,19 +194,19 @@ d3.csv("assets/data/data.csv").then(data => {
         .attr("transform", `translate(${width / 2}, ${height + 20})`);
     var ageLabel = XlabelsGroup.append("text")
         .attr("x", 0)
-        .attr("y", 20)
+        .attr("y", 15)
         .attr("value", "age") // value to grab for event listener
         .classed("active", true)
         .text("Age (Median)");
     var incomeLabel = XlabelsGroup.append("text")
         .attr("x", 0)
-        .attr("y", 40)
+        .attr("y", 35)
         .attr("value", "income") // value to grab for event listener
         .classed("inactive", true)
         .text("Household Income (Median)");
     var povertyLabel = XlabelsGroup.append("text")
         .attr("x", 0)
-        .attr("y", 60)
+        .attr("y", 55)
         .attr("value", "poverty") // value to grab for event listener
         .classed("inactive", true)
         .text("In Poverty (%)");
@@ -231,18 +235,18 @@ d3.csv("assets/data/data.csv").then(data => {
     // x axis labels event listener
     XlabelsGroup.selectAll("text")
         .on("click", function() {
-        // Delete old circles
-        if (!circlesGroup.empty()) {
-            circlesGroup.remove();
-        };
-        // Delete old state abbreviations
-        var stateAbbreviationGroup = chartGroup.selectAll(".state_abbr")
-        if (!stateAbbreviationGroup.empty()) {
-            stateAbbreviationGroup.remove();
-        }
         // get value of selection
         var value = d3.select(this).attr("value");
         if (value !== chosenXAxis) {
+            // Delete old circles
+            if (!circlesGroup.empty()) {
+                circlesGroup.remove();
+            };
+            // Delete old state abbreviations
+            var stateAbbreviationGroup = chartGroup.selectAll(".state_abbr")
+            if (!stateAbbreviationGroup.empty()) {
+                stateAbbreviationGroup.remove();
+            }
             // replaces chosenXAxis with value
             chosenXAxis = value;
 
@@ -296,18 +300,18 @@ d3.csv("assets/data/data.csv").then(data => {
     // x axis labels event listener
     YlabelsGroup.selectAll("text")
         .on("click", function() {
-        // Delete old stuff
-        if (!circlesGroup.empty()) {
-            circlesGroup.remove();
-        }
-        // Delete old state abbreviations
-        var stateAbbreviationGroup = chartGroup.selectAll(".state_abbr")
-        if (!stateAbbreviationGroup.empty()) {
-            stateAbbreviationGroup.remove();
-        }
         // get value of selection
         var value = d3.select(this).attr("value");
         if (value !== chosenYAxis) {
+            // Delete old stuff
+            if (!circlesGroup.empty()) {
+                circlesGroup.remove();
+            }
+            // Delete old state abbreviations
+            var stateAbbreviationGroup = chartGroup.selectAll(".state_abbr")
+            if (!stateAbbreviationGroup.empty()) {
+                stateAbbreviationGroup.remove();
+            }
             // replaces chosenXAxis with value
             chosenYAxis = value;
 
