@@ -10,7 +10,7 @@ The editor wants to run a series of feature stories about the health risks facin
 
 ## Your Task
 
-### Core Assignment: D3 Dabbler (Required Assignment)
+### Core Assignment: D3 Dabbler
 
 ![4-scatter](Images/4-scatter.jpg)
 
